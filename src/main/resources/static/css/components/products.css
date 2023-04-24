@@ -22,7 +22,8 @@ div.products {
   display: block;
   margin: 0 auto;
   max-width: 100%;
-  height: auto;
+  object-fit: contain;
+  height: 250px;
 }
 
 .product p {
