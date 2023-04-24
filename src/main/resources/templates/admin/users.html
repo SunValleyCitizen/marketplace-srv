@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Пользователи</title>
+  <link rel="stylesheet" href="/css/pages/admin/users.css">
+</head>
+
+<body>
+  <div th:replace="admin/header :: header"></div>
+  
+  <h3>Пользователи</h3>
+  <table class="users">
+    <thead>
+      <th>Id</th>
+      <th>Логин</th>
+      <th>AccountNonExpired</th>
+      <th>AccountNonLocked</th>
+      <th>CredentialsNonExpired</th>
+      <th>Enabled</th>
+      <th>Роль</th>
+    </thead>
+    <tbody>
+      <tr class="user" th:each="personDetails : ${allPersonDetails}" th:object = "${personDetails.getPerson()}">
+        <td th:text="*{getId()}"></td>
+        <td th:text="*{getLogin()}"></td>
+        <td th:text="${personDetails.isAccountNonExpired()}"></td>
+        <td th:text="${personDetails.isAccountNonLocked()}"></td>
+        <td th:text="${personDetails.isCredentialsNonExpired()}"></td>
+        <td th:text="${personDetails.isEnabled()}"></td>
+        <td>
+          <form th:method="POST" th:action="@{/admin/user/edit/{id}(id=*{getId()})}">
+            <select name="role">
+              <option th:each="role : ${roles}" th:attr="value=${role}" th:selected="${role==personDetails.getPerson().getRole()}" th:text="${role}"></option>
+            </select>
+            <input type="submit" value="Сохранить роль">
+          </form>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</body>
+
+</html>

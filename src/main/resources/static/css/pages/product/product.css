@@ -1,0 +1,11 @@
+@import '/css/global.css';
+@import '/css/components/filters.css';
+@import '/css/components/products.css';
+
+.wrapper {
+  display: flex;
+  padding-bottom: 3em;
+}
+.right-side {
+  flex-grow: 1;
+}

@@ -1,0 +1,45 @@
+
+/* Style the orders container */
+div.orders {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Style each order */
+div.orders .order {
+  width: 80%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+/* Style the order title */
+div.orders .order h3 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+/* Style the product image */
+div.orders .order img {
+  display: block;
+  max-width: 75px;
+  margin: auto;
+  margin-bottom: 10px;
+}
+
+/* Style the product information */
+div.orders .order p {
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+
+/* Style the order status */
+div.orders .order p:last-child {
+  font-weight: bold;
+}

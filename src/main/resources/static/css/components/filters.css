@@ -1,0 +1,33 @@
+/* Form styles */
+form.filters {
+  display: inline-block;
+  text-align: center;
+}
+
+form.filters fieldset {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 20px auto;
+}
+
+form.filters label {
+  display: inline-block;
+  text-align: left;
+}
+
+form.filters input[type="text"] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+}
+
+form.filters input[type="radio"] {
+  display: inline-block;
+  margin: 0 5px;
+  vertical-align: middle;
+}

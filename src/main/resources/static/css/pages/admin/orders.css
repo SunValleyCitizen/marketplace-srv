@@ -1,0 +1,20 @@
+@import '/css/global.css';
+@import '/css/components/orders.css';
+@import '/css/components/filters.css';
+
+form.filters {
+  width: 100%;
+}
+
+form.filters fieldset {
+  display: flex;
+  width: 80%;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+form.filters input[type="text"] {
+  width: auto;
+  margin-left: 20px;
+}

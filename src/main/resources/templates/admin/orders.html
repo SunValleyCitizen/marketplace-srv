@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <link rel="stylesheet" href="/css/pages/admin/orders.css">
+</head>
+
+<body>
+  <div th:replace="admin/header :: header"></div>
+
+  <h3>Заказы</h3>
+  <form class="filters" th:method="POST" th:action="@{/admin/orders/search}">
+    <fieldset>
+      <legend>Выберите параметры для сортировки, поиска, фильтрации:</legend>
+      <label for="search">Поиск по последним 4-м символам номера заказа</label>
+      <input type="text" id="search" name="search" minlength="4" maxlength="4" th:value="*{value_search}">
+      <input type="submit" value="Найти">
+    </fieldset>
+  </form>
+
+  <div class="orders">
+    <div class="order" th:each="order : ${orders}">
+      <h3 th:text="'Заказ №' + ${order.getNumber()}"></h3>
+      <img th:src="'/img/' + ${order.getProduct().getImageList()[0].getFileName()}" width="300px">
+      <p th:text="'Наименование: ' + ${order.getProduct().getTitle()}"></p>
+      <p th:text="'Количество: ' + ${order.getCount()}"></p>
+      <p th:text="'Цена: ' + ${order.getPrice()}"></p>
+      <p th:text="'Дата заказа: ' + ${#temporals.format(order.getDateTime(), 'dd-MMM-yyyy')}"></p>
+
+      <form th:method="POST" th:action="@{/admin/order/edit/{id}(id=${order.getId()})}">
+        <label for="status">Статус:</label>
+        <select name="status">
+          <option th:each="status : ${statuses}" th:attr="value=${status}" th:selected="${status==order.getStatus()}" th:text="${status}"></option>
+        </select>
+        <input type="submit" value="Обновить статус заказа">
+      </form>
+      <a class="action" th:href="@{/admin/order/delete/{id}(id=${order.getId()})}">Удалить</a>
+    </div>
+  </div>
+</body>
+
+</html>

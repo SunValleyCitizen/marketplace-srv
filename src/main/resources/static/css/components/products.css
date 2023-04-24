@@ -1,0 +1,35 @@
+
+/* Product list styles */
+
+div.products {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-gap: 0.5rem;
+  justify-content: space-between;
+  margin: 50px 50px 0px 50px;
+}
+
+.product {
+  margin: 20px auto;
+  max-width: 500px;
+  display: block;
+  text-align: center;
+  cursor: pointer;
+  transition: transform 250ms ease-in-out;
+}
+
+.product img {
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
+  height: auto;
+}
+
+.product p {
+  text-align: center;
+}
+
+.product:hover {
+  transform: scale(1.2);
+  z-index: 999;
+}

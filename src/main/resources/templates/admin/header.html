@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+</head>
+
+<body>
+  <div class="header" th:fragment="header">
+    <h1>Личный кабинет администратора</h1>
+    <div class="navigation">
+      <form method="get" th:action="@{/}">
+        <input type="submit" value="Главная">
+      </form>
+      <form method="get" th:action="@{/admin}">
+        <input type="submit" value="Товары">
+      </form>
+      <form method="get" th:action="@{/admin/orders}">
+        <input type="submit" value="Заказы">
+      </form>
+      <form method="get" th:action="@{/admin/users}">
+        <input type="submit" value="Пользователи">
+      </form>
+      <form method="post" action="/logout">
+        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+        <button type="submit">Выйти</button>
+      </form>
+    </div>
+  </div>
+</body>
+
+</html>

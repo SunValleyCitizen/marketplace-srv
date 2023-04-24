@@ -1,0 +1,72 @@
+/* CSS styles for the online marketplace */
+
+/* Global styles */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+input {
+  box-sizing: border-box;
+}
+
+button,
+a.action,
+input[type='submit'] {
+  background-color: #008cba;
+  transition: background-color 250ms ease-in-out;
+  border: none;
+  color: #fff;
+  padding: 12px 30px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+button:hover,
+a.action:hover,
+input[type='submit']:hover {
+  background-color: #004860;
+}
+
+h1 {
+  font-size: 2.5em;
+  text-align: center;
+}
+
+h3 {
+  font-size: 1.5em;
+  text-align: center;
+}
+
+hr {
+  margin: 20px 0;
+  border: none;
+  border-top: 1px solid #ddd;
+}
+
+legend {
+  font-size: 1.2em;
+}
+
+div.header {
+  display: contents;
+}
+
+div.header div.navigation {
+  display: flex;
+  justify-content: flex-end;
+  position: sticky;
+  top: 0;
+  width: 100%;
+  background: #008cba;
+}
+div.header div.navigation form input,
+div.header div.navigation form button {
+  margin: auto;
+  border-radius: 0;
+}

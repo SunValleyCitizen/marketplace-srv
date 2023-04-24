@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Cписок товаров</title>
+  <link rel="stylesheet" href="/css/pages/product/product.css">
+</head>
+
+<body>
+  <div th:replace="
+      ${#authentication.principal} == 'anonymousUser' 
+        ? ~{product/header :: header}
+        : (${#authentication.principal.getPerson().getRole().toString()} == 'ROLE_ADMIN' 
+          ? ~{admin/header :: header} 
+          : ~{user/header :: header})
+    "></div>
+
+  <div class="wrapper">
+    <div class="left-side">
+      <h3>Cортировка, поиск, фильтрация</h3>
+      <form class="filters" th:method="POST" th:action="@{/product/search}">
+        <fieldset>
+          <legend>Выберите параметры для сортировки, поиска, фильтрации:</legend>
+          <label for="search">Поиск по наименованию</label>
+          <input type="text" id="search" name="search" th:value="*{value_search}">
+          <br>
+          <p>Цена, P</p>
+          <label for="ot">От</label>
+          <input type="text" name="ot" id="ot" th:value="*{value_price_ot}">
+          <label for="do">До</label>
+          <input type="text" name="do" id="do" th:value="*{value_price_do}">
+          <br>
+          <br>
+          <div>
+            <input type="radio" id="ascending_price" name="price" value="sorted_by_ascending_price">
+            <label for="ascending_price">Отсортировать по возрастанию цены</label>
+            <input type="radio" id="descending_price" name="price" value="sorted_by_descending_price">
+            <label for="descending_price">Отсортировать по убыванию цены</label>
+            <p>Категория товаров: </p>
+            <input type="radio" id="oil" name="contract" value="oil">
+            <label for="oil">Моторное масло</label>
+            <input type="radio" id="engine" name="contract" value="engine">
+            <label for="engine">Охлаждающая жидкость</label>
+            <input type="radio" id="brake" name="contract" value="brake">
+            <label for="brake">Тормозная жидкость</label>
+            <br>
+            <br>
+            <input type="submit" value="Найти">
+          </div>
+        </fieldset>
+      </form>
+    </div>
+    <div class="right-side">
+      <div class="products">
+        <div class="product" th:each="product : ${products}" th:data-url="@{/product/info/{id}(id=${product.getId()})}" onclick="window.location.href=this.getAttribute('data-url');">
+          <img th:src="'/img/' + ${product.imageList[0].getFileName()}" width="300px">
+          <p th:text="${product.getTitle()}"></p>
+          <p th:text="'Цена: ' + ${product.getPrice()}"></p>
+          <a class="action"
+            th:if="${#authentication.principal} != 'anonymousUser' and ${#authentication.principal.getPerson().getRole().toString()} == 'ROLE_USER'"
+            th:href="@{/cart/add/{id}(id=${product.getId()})}">Добавить товар в корзину</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</body>
+
+</html>

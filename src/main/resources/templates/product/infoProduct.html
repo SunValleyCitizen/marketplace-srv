@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Информация о товаре</title>
+  <link rel="stylesheet" href="/css/pages/product/infoProduct.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/flickity/1.0.0/flickity.pkgd.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flickity/1.0.0/flickity.css">
+</head>
+
+<body>
+  <div th:replace="
+    ${#authentication.principal} == 'anonymousUser' 
+      ? ~{product/header :: header}
+      : (${#authentication.principal.getPerson().getRole().toString()} == 'ROLE_ADMIN' 
+        ? ~{admin/header :: header} 
+        : ~{user/header :: header})
+  "></div>
+  
+  <h3>Информация о товаре: </h3>
+  <div class="product">
+    <div class="gallery js-flickity" data-flickity-options='{ "wrapAround": true }'>
+      <div class="gallery-cell" th:each="img : ${product.getImageList()}">
+        <img th:src="'/img/' + ${img.getFileName()}">
+      </div>
+    </div>
+    <div class="description">
+      <p th:text="'Наименование: ' + ${product.getTitle()}"></p>
+      <p th:text="'Описание: ' + ${product.getDescription()}"></p>
+      <p th:text="'Цена: ' + ${product.getPrice()}"></p>
+      <p th:text="'Cклад: ' + ${product.getWarehouse()}"></p>
+      <p th:text="'Продавец: ' + ${product.getSeller()}"></p>
+      <p th:text="'Категория: ' + ${product.getCategory().getName()}"></p>
+    </div>
+
+  </div>
+
+</body>
+
+</html>

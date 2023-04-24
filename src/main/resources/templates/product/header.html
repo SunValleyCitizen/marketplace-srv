@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+</head>
+
+<body>
+  <div class="header" th:fragment="header">
+    <h1>Главная страница магазина MotorAid</h1>
+    <div class="navigation">
+      <form method="get" th:action="@{/}">
+        <input type="submit" value="Главная">
+      </form>
+      <form method="get" th:action="@{/authentication}">
+          <button type="submit">Войти</button>
+      </form>
+    </div>
+  </div>
+</body>
+
+</html>
